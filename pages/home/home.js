@@ -104,7 +104,7 @@ Component({
       if (!app.globalData.hasLogin && e.detail.value != 'label_1') {
         //页面跳转
         wx.redirectTo({
-          url: "pages/publishM/publishM",
+          url: "/pages/publishM/publishM",
         })
       }
     

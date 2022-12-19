@@ -1,7 +1,8 @@
 <!--pages/apply/apply.wxml-->
+<t-search model:value="{{value_s}}" label="1" placeholder="搜索" center="{{true}}" />
 
 <block>
-  <t-steps class="demo-steps" current="3-0" readonly="true" layout="vertical">
+  <t-steps class="demo-steps" current="3-0" readonly="false" layout="vertical">
     <t-step-item class="demo-steps-item" title="发布任务" />
     <t-step-item title="接稿" />
     <t-step-item class="demo-steps-item" title="写稿"  />

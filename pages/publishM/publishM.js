@@ -107,7 +107,8 @@ Component({
         value: index+1,
       })),
 
-      [`${PICKER_KEY.DATE}Value`]: [],
+      [`${PICKER_KEY.DATE1}Value`]: [10],
+      [`${PICKER_KEY.DATE2}Value`]: [],
       [`${PICKER_KEY.People}Value`]: [],
 
       value: 'label_2',
@@ -119,7 +120,7 @@ Component({
     ],
     },
   methods: {
-    onTabsChange(event) {
+    /*onTabsChange(event) {
       console.log(`Change tab, tab-panel value is ${event.detail.value}.`);
     },
 
@@ -129,7 +130,7 @@ Component({
 
     onStickyScroll(event) {
       console.log(event.detail);
-    },
+    },*/
     
     joinArray(array) {
       return array.join('-');

@@ -6,7 +6,6 @@
   background-color:rgb(236,242,254);
   margin: 10rpx;
   border-radius:10%;
- 
 }
 .m .title{
   padding: 10rpx 30rpx;

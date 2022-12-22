@@ -1,10 +1,10 @@
 {
-  "pages":[
+  "pages":[   
+    "pages/apply/apply", 
     "pages/publishedM/publishedM",
-    "pages/apply/apply",
-    "pages/publishM/publishM",
     "pages/home/home",
     "pages/login/login",
+    "pages/publishM/publishM",
     "pages/index/index",
     "pages/logs/logs"
   ],

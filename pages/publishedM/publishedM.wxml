@@ -8,7 +8,7 @@
       <text >{{item.people}}</text>
     </view>
     <view >
-      <view class="tag"  hidden="{{isUrge}}">紧急稿件</view>
+      <view class="tag"  hidden="{{!isUrge}}">紧急稿件</view>
       <view class="tag"  hidden="{{isUrge}}">缺文摄</view>
     </view>
       <button>接摄</button>

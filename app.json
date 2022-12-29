@@ -1,8 +1,11 @@
 {
   "pages":[ 
+    "pages/checkM/checkM", 
+    "pages/publishedM/publishedM",
+ 
     "pages/fcheckM/fcheckM",  
     "pages/login/login",
-    "pages/publishedM/publishedM",
+    
     "pages/publishM/publishM",
     "pages/apply/apply", 
     "pages/home/home",

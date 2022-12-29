@@ -1,6 +1,6 @@
 .m{
   height:300rpx;
-  width: 90%;
+  width: 100%;
   padding: 10rpx;
   display: block;
   background-color:rgb(236,242,254);

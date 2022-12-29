@@ -5,7 +5,8 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad(options) {},
+  onLoad(options) {
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -56,6 +57,7 @@ Page({
 
   },
 
+
   /**
    * 页面的初始数据
    */
@@ -68,7 +70,6 @@ Page({
 const swiperList = [
   {
     image: "/image/test1.png",
-
   },
   {
     image: "/image/test2.png",
@@ -96,18 +97,30 @@ Component({
   },
 
   methods: {
+    goTomoudle2(){
+      wx.redirectTo({
+        url: '/pages/publishedM/publishedM',
+      })
+    },
     onChange(e) {
       //tabbar
       this.setData({
         value: e.detail.value,
       });
-      if (!app.globalData.hasLogin && e.detail.value != 'label_1') {
+      if (app.globalData.hasLogin && e.detail.value == 'label_2') {
         //页面跳转
         wx.redirectTo({
           url: "/pages/publishM/publishM",
         })
+      };
+      if (!app.globalData.hasLogin && e.detail.value != 'label_1') {
+        //页面跳转
+        wx.redirectTo({
+
+          url: "/pages/login/login",
+
+        })
       }
-    
     },
   },
 });

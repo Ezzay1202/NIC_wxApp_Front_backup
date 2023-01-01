@@ -7,7 +7,11 @@ Page({
    */
   data: {
     mag:{
-      text:"管理学创新实验班班会 管理学创新实验班班会", date1:"10-9-11-0" ,date2:"12-00", location:"东久D888",people:"1文1摄"},
+      text:"管理学创新实验班班会 管理学创新实验班班会", date1:"10-9-11-0" ,date2:"12-00", location:"东久D888",people:"1文1摄" ,fileArray:[{name: "NIC考核标准lallalal (1)(1).docx",
+      path: "wxfile://tmp_d356ac9211e5a7b972a4f51c20e8b0cc.docx",
+      size: 22089,
+      time: 1669440948,
+      type: "file"}]},
     tag:[
       {name:"优秀稿件",show:true},
       {name:"优秀稿件2",show:false},
@@ -26,7 +30,15 @@ Page({
      // textarea
      min: 5,//最少字数
      max: 300, //最多字数 (根据自己需求改变) 
-     files:[]
+     fileArray:[{name: "NIC考核标准lallalal (1)(1).docx",
+     path: "wxfile://tmp_d356ac9211e5a7b972a4f51c20e8b0cc.docx",
+     size: 22089,
+     time: 1669440948,
+     type: "file"},{name: "NIC考核标准 (1)(1).docx",
+     path: "wxfile://tmp_d356ac9211e5a7b972a4f51c20e8b0cc.docx",
+     size: 22089,
+     time: 1669440948,
+     type: "file"}]
    },
     // 星星点击事件
     starTap: function (e) {
@@ -103,71 +115,53 @@ Page({
       })
     }
   },
-  chooseFile() {
-    var that = this
-    console.log("yes"),
+  // 文件上传
+  uploadFile:function(e) {
+    console.log(e)
     wx.chooseMessageFile({
-      count: 1,
-      type: 'file',
-      success(res) {
-        var file = 'voucherData.matterapply_file'
-        const tempFilePaths = res.tempFiles
-        that.setData({
-          files: tempFilePaths
-        })
-        console.log(tempFilePaths),
-        console.log(that.data.files)
-      }
-    })
-  },
-  // 删除文件
-  removefile() {
-    this.setData({
-      files: []
-    })
-  },
-  // 点击事件
-openFile() { // item为当前点击的事物对象
-  let _this = this;
-  let file = decodeURIComponent(_this.files.pathUrl); // 解码(注意:涉及到文件名中有中文需要转码)
-  file = this.getFilePathName(file); // 将文件路径过滤，格式为【文件名+.后缀名】
-  // 加载状态
-  
-  
-  // 预览网络文档
-  wx.downloadFile({
-    url: _this.files.pathUrl, // 文件的本身url
-    filePath: wx.env.USER_DATA_PATH + '/' + file, // 本地自定义的文件名
-    success: function (res) {
-      let filePath = res.filePath; // 微信临时文件路径(这里要使用自定义的名字文件名,否则打开的文件名是乱码)
-      wx.openDocument({
-        filePath: filePath,
-        showMenu: true,  // 是否显示右上角菜单按钮 默认为false(看自身需求，可要可不要。后期涉及到右上角分享功能)
-        success: function () {
-           _this.toast({ title: '打开文件成功' });
-        },
-        fail: function() {
-          _this.$util.toast({ title: '打开文件失败，请稍后重试' });
+        count: 10,     //选择文件的数量
+        type: 'all',   //选择文件的类型
+        success: (res) => {
+          console.log(res.tempFiles)
+            this.setData({
+              fileArray: this.data.fileArray.concat(res.tempFiles)
+            })
         }
-      });
-      uni.hideLoading();
-    },
-    fail: function() {
-      _this.$util.toast({ title: '打开文件失败，请稍后重试' });
-      uni.hideLoading();
-    }
-  });
+    })
 },
-// 文件路径过滤【文件名+.后缀名】
-// 例如：哈哈.pdf
-getFilePathName(path) {
-let pos1 = path.lastIndexOf('/');
-let pos2 = path.lastIndexOf('\\');
-let position  = Math.max(pos1, pos2);
-if ( position< 0 )
-return path;
-else
-return path.substring(position+ 1);
+removefile(e){
+  let index=e.currentTarget.dataset.index
+  console.log(e,index)
+  this.data.fileArray.splice(index,1)
+  this.setData({
+    fileArray:this.data.fileArray
+  })
+},
+// 预览附件
+previewFile(e) {
+var string = ''
+string = e.currentTarget.dataset.path.substring(e.currentTarget.dataset.path.indexOf(".") + 1)
+if (string == 'png' || string == 'jpg' || string == 'gif' || string == 'jpeg') {
+        // 图片预览
+        var arr = []
+        arr.push(e.currentTarget.dataset.path)
+        wx.previewImage({
+            current: e.currentTarget.dataset.path,
+            urls: arr
+        })
+    } else {
+        // 文件预览
+        wx.openDocument({
+            fileType: string, // 文件类型
+            filePath: e.currentTarget.dataset.path, // 文件地址
+            success: function (res) {
+                console.log('成功')
+            },
+            fail: function (error) {
+                console.log("失败")
+            }
+        })
+    }
 },
 
 

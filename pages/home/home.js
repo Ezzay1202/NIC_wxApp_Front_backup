@@ -6,6 +6,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    if(options.type="baidu"){
+      this.setData({
+        url:"https://mp.weixin.qq.com/s/HVmzDgdhLzOJUcBnIMy0fg"
+      })
+    }
   },
 
   /**
@@ -62,7 +67,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    url:""
   }
 })
 
@@ -81,7 +86,23 @@ const swiperList = [
 ];
 Component({
   data: {
-    img: 'https://tdesign.gtimg.com/mobile/%E5%9B%BE%E7%89%87.png',
+    functions:[{
+      name:"待接任务",
+      img: '/image/publishedM.png',
+      goto:"/pages/publishedM/publishedM"
+    },{
+      name:"查询稿件",
+      img: '/image/apply.png',
+      goto:"/pages/apply/apply"
+    },{
+      name:"审核稿件",
+      img: '/image/checkM.png',
+      goto:"/pages/checkM/checkM"
+    },{
+      name:"提交稿件",
+      img: '/image/submitM.png',
+      goto:"/pages/submitM/submitM"
+    }],
     current: 0,
     duration: 500,
     interval: 5000,
@@ -97,9 +118,12 @@ Component({
   },
 
   methods: {
-    goTomoudle2(){
+    goTomoudle2(e){
+      console.log("yes",e)
+      let index=e.currentTarget.dataset.index
+      let url=this.data.functions[index].goto
       wx.redirectTo({
-        url: '/pages/publishedM/publishedM',
+        url: url,
       })
     },
     onChange(e) {
@@ -107,13 +131,13 @@ Component({
       this.setData({
         value: e.detail.value,
       });
-      if (app.globalData.hasLogin && e.detail.value == 'label_2') {
+      if (!app.globalData.hasLogin && e.detail.value == 'label_2') {
         //页面跳转
         wx.redirectTo({
           url: "/pages/publishM/publishM",
         })
       };
-      if (!app.globalData.hasLogin && e.detail.value != 'label_1') {
+      if (app.globalData.hasLogin && e.detail.value != 'label_1') {
         //页面跳转
         wx.redirectTo({
 

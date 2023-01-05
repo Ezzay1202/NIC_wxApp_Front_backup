@@ -1,23 +1,20 @@
-// pages/seeM/seeM.js
+// pages/inquiryM/inquiryM.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    url:""
+    listm:[
+     
+    ]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    console.log(this.data.url,options)
-    let url=options.url
-    this.setData({
-      url:url
-    })
-    console.log(this.data.url,options)
+
   },
 
   /**

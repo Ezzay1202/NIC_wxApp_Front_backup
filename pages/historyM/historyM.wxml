@@ -19,33 +19,8 @@
     />
   </van-dropdown-item>
 
-  <van-dropdown-item id="item" title="{{ itemTitle }}">
-    <van-cell title="{{ switchTitle1 }}">
-      <van-switch
-        slot="right-icon"
-        size="24px"
-        style="height: 26px"
-        checked="{{ switch1 }}"
-        active-color="#ee0a24"
-        bind:change="onSwitch1Change"
-      />
-    </van-cell>
-    <van-cell title="{{ switchTitle2 }}">
-      <van-switch
-        slot="right-icon"
-        size="24px"
-        style="height: 26px"
-        checked="{{ switch2 }}"
-        active-color="#ee0a24"
-        bind:change="onSwitch2Change"
-      />
-    </van-cell>
-    <view style="padding: 5px 16px;">
-      <van-button type="danger" block round bind:click="onConfirm">
-        确认
-      </van-button>
-    </view>
-  </van-dropdown-item>
+  <van-dropdown-item id="item" title="{{ itemTitle }}"/>
+   
 </van-dropdown-menu>
 
 

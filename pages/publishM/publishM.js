@@ -1,4 +1,5 @@
 // pages/home/home.js
+const app = getApp();
 const date = new Date()
 const year = date.getFullYear()
 const month = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1)
@@ -157,7 +158,6 @@ Component({
     ],
   },
   methods: {
-
     setPlace(e) {
       place1 = e.detail.value
     },
@@ -279,8 +279,10 @@ Component({
           data: {
             "method": "add",
             "data": {
+              "element":0,
+              "publisher":app.globalData.username,
               "place": place1,
-              "title": "深夜活动",
+              "title": "",
               "description": description1,
               "time": {
                 "year": year,

@@ -1,5 +1,7 @@
 {
   "pages":[ 
+    "pages/historyM/historyM",
+    "pages/seeM/seeM",
     "pages/home/home",
     "pages/fcheckM/fcheckM",  
     "pages/submitM/submitM",

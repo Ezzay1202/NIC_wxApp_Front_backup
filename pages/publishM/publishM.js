@@ -1,4 +1,5 @@
 // pages/home/home.js
+//可以增加一些tag供发布者选择，以便更好的分类（可能需要后端执行自动分词python文件）
 const app = getApp();
 const date = new Date()
 const year = date.getFullYear()
@@ -363,7 +364,7 @@ Component({
             "method": "add",
             "data": {
               "element":0,
-              "publisher":app.globalData.username,
+              "publisher":app.globalData.userid,
               "place": place1,
               "title": "",
               "description": description1,

@@ -50,6 +50,7 @@ Page({
             photo = '';
           }
           list_show[i] = {
+            missionID: list_all[j].missionID,
             text: list_all[j].description,
             date1: list_all[j].time.month + "月" + list_all[j].time.day + "日" + list_all[j].time.beginHour + ":" + minbegin,
             date2: list_all[j].time.endHour + ":" + minend,
@@ -66,18 +67,17 @@ Page({
           listm: list_show
         })
       }
-    });
-
+    })
   },
-  takePhoto() {
+  takePhoto(e) {
     if (app.globalData.authority1 == 1) {
       wx.request({
         url: 'http://1.15.118.125:8080/NIC/take',
         data: {
           "method": "take",
           "data": {
-            "username": app.globalData.username,
-            "missionID": "2022120402",
+            "userid": app.globalData.userid,
+            "missionID": e.currentTarget.dataset.id.toString(),
             "kind": "photo"
           }
         },
@@ -118,15 +118,15 @@ Page({
 
   },
 
-  takeArticle() {
+  takeArticle(e) {
     if (app.globalData.authority1 == 1) {
       wx.request({
         url: 'http://1.15.118.125:8080/NIC/take',
         data: {
           "method": "take",
           "data": {
-            "username": app.globalData.username,
-            "missionID": "2022120402",
+            "userid": app.globalData.userid,
+            "missionID": e.currentTarget.dataset.id.toString(),
             "kind": "article"
           }
         },

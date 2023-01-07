@@ -1,10 +1,10 @@
 // pages/login/login.js
 const app = getApp()
-let username = ''
+let userid = ''
 let password = ''
 Page({
   content(e) {
-    username = e.detail.value
+    userid = e.detail.value
   },
   password(e) {
     password = e.detail.value
@@ -83,7 +83,7 @@ Page({
         icon: 'error'
       })
     }
-    if (username == '') {
+    if (userid == '') {
       wx.showToast({
         title: '请输入账户！',
         icon: 'error'
@@ -93,7 +93,7 @@ Page({
         data: {
           data: {
             password: password,
-            userid: username
+            userid: userid
           },
           method: "signUp"
         },
@@ -107,8 +107,6 @@ Page({
             app.globalData.authority3 = res.data.data.authority3;
             app.globalData.username = res.data.data.username;
             app.globalData.userid = res.data.data.userid;
-            app.globalData.missionTaken = res.data.data.missionTaken;
-            app.globalData.missionCompleted = res.data.data.missionCompleted;
             wx.showToast({
                 title: '登录成功',
               }),

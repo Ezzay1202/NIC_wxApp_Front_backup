@@ -1,5 +1,7 @@
 {
   "pages":[ 
+    "pages/myself/myself",
+    "pages/mydate/mydate",
     "pages/home/home",
     "pages/login/login",
     "pages/publishM/publishM",

@@ -170,6 +170,14 @@ Component({
           })
         }
       };
+      if (app.globalData.hasLogin && e.detail.value == 'label_4') {
+        //页面跳转
+      
+          wx.redirectTo({
+            url: "/pages/myself/myself",
+          })
+        
+      };
       if (!app.globalData.hasLogin && e.detail.value != 'label_1') {
         //页面跳转
         wx.redirectTo({

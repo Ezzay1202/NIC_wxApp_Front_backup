@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-      currentWeek: 10,
+      currentWeek: 1,
       time: {
         one: [{
             index: 1,
@@ -71,23 +71,67 @@ Page({
           
         ],
       },
-      one: [{
-          week:3,
+      weeks:[{
+        id:1,
+        class:[{
+          week:7,
           num1:1,
-          num2:3,
+          num2:5,
           sub: '编译原理',
           add: 'B202',
           tec: "苏苏苏",
-          },
-          {
+          color:Math.floor(Math.random()*10)
+          },{
             week:6,
             num1:4,
             num2:9,
             sub: '操作系统',
             add: 'N502',
             tec: "苏苏苏",
+            color:Math.floor(Math.random()*10)
           },
         ],
+      },{
+        id:2,
+        class:[{
+          week:3,
+          num1:1,
+          num2:5,
+          sub: '编译原理',
+          add: 'B202',
+          tec: "苏苏苏",
+          color:Math.floor(Math.random()*10)
+          },{
+            week:5,
+            num1:4,
+            num2:9,
+            sub: '操作系统',
+            add: 'N502',
+            tec: "苏苏苏",
+            color:Math.floor(Math.random()*10)
+          },
+        ],
+      },{
+        id:3,
+        class:[{
+          week:2,
+          num1:4,
+          num2:8,
+          sub: '编译原理',
+          add: 'B202',
+          tec: "苏苏苏",
+          color:Math.floor(Math.random()*10)
+          },{
+            week:6,
+            num1:4,
+            num2:9,
+            sub: '操作系统',
+            add: 'N502',
+            tec: "苏苏苏",
+            color:Math.floor(Math.random()*10)
+          },
+        ],
+      },],
       weekList: [{
         isCurr:true,
         week:"周一",
@@ -118,8 +162,7 @@ Page({
         day:"1-9",
       }],
       isShow: false,
-      current: {},
-
+      color:["#8fb3a5","#be6476","#819b77","#b8a070","#1f8faf","#419b89","#8e7f64","#6476be","#e07050","8faf1f"],
   },
 
   /**
@@ -176,5 +219,10 @@ Page({
    */
   onShareAppMessage() {
 
+  },
+  changeWeeks(e){
+    this.setData({
+      currentWeek:e.detail.current+1
+    })
   }
 })

@@ -17,7 +17,8 @@
 			</view>
 		</view>
 	</view>
-
+</view>
+<view class="flex">
   <view class="myM">
     <text class="text">我的稿件</text>
     <text>进行中稿件</text>
@@ -61,15 +62,21 @@
   <view class="time-view">
     <text class="text">我的时间</text> 
     <view class="myday">
-      
+      <block wx:for="{{work}}" wx:key="index">
+        <view class="mywork">
+          <text style="font-size: 30rpx; font-weight: 500;">{{item.name}}</text>
+          <text>{{item.add}}</text>
+          <text>{{item.time1}}-{{item.time2}}</text>
+        </view>
+      </block>
     </view> 
   </view>
+  <image></image>
 </view>
+
 
 <t-tab-bar value="{{value}}" bindchange="onChange" theme="tag" split="{{false}}">
   <t-tab-bar-item wx:for="{{list}}" wx:key="index" value="{{item.value}}" icon="{{item.icon}}" bindtap="onChange">
     {{item.label}}
   </t-tab-bar-item>
 </t-tab-bar>
-
-<image class="bottom" ></image>

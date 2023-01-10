@@ -1,8 +1,10 @@
 /* pages/mydate/mydate.wxss */
 page {
   padding: 30rpx 20rpx;
+  background-image: url(https://s3.bmp.ovh/imgs/2023/01/10/5032ffa435b9888b.png);
+  background-position: 50%;
   background-color: rgb(238, 238, 238);
-  --class-color:#fad0c4;
+  --bg-color:rgba(255, 255, 255, 0.548);
   --class-height:110rpx;
 }
 .flex-row{
@@ -19,7 +21,7 @@ page {
 .head-left {
   border-radius: 10rpx;
   height: 125rpx;
-  background: #fff;
+  background:var(--bg-color);
   width: 90rpx;
   margin-right: 10rpx;
   position: relative;
@@ -62,7 +64,7 @@ page {
 }
 
 .head-right-curr {
-  color: pink;
+  color: #5262a4;
 }
 
 .head-icon {
@@ -76,7 +78,7 @@ page {
 .head-right {
   border-radius: 10rpx;
   height: 125rpx;
-  background: #fff;
+  background: var(--bg-color);
   width: 610rpx;
   font-size: 23rpx;
   box-sizing: border-box;
@@ -96,7 +98,7 @@ page {
 .container-left {
   grid-area: time;
   border-radius: 10rpx;
-  background: #fff;
+  background: var(--bg-color);
   width: 90rpx;
   margin-right: 10rpx;
   box-sizing: border-box;
@@ -114,10 +116,15 @@ page {
   grid-template-columns: 1fr 6fr;
   box-sizing: border-box;
 }
+.swiper{
+  width: 600rpx;
+  height:1444rpx;
+  position: relative;
+}
 .container-right {
   grid-area: word;
   border-radius: 10rpx;
-  background-color: #fff;
+  background-color: var(--bg-color);
   width: 600rpx;
   height:1444rpx;
   position: relative;
@@ -141,6 +148,7 @@ page {
 .con-item {
   text-align: center;
   border-radius: 10rpx;
+  margin-right: 10rpx;
   margin-bottom: 5rpx;
   font-size: 17rpx;
   color: #fff;
@@ -148,7 +156,11 @@ page {
   padding: 10rpx;
   line-height: 28rpx;
   animation: show 1.5s ease-in-out;
-  background-color: var(--class-color);
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  opacity: 0.8;
+  border: 1px solid white;
 }
 
 @keyframes show {
@@ -168,14 +180,18 @@ page {
 .con-item:last-child {
   margin-right: 0;
 }
+.textbox{
+  display: -webkit-flex;
+  flex-direction: column;
+  -webkit-box-align: center;
+}
 
 /* 多行文字换行 */
 .line_ellipsis {
   overflow: hidden;
   text-overflow: ellipsis;
-  display: -webkit-box;
   -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
+  -webkit-box-orient:vertical;
 }
 
 /* 弹框 */

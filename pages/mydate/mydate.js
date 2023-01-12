@@ -131,7 +131,7 @@ Page({
             color:Math.floor(Math.random()*10)
           },
         ],
-      },],
+      },,,,,,,,,,,,,,],
       weekList: [{
         isCurr:true,
         week:"周一",
@@ -161,7 +161,7 @@ Page({
         week:"周日",
         day:"1-9",
       }],
-      isShow: false,
+      isShow: true,
       color:["#8fb3a5","#be6476","#819b77","#b8a070","#1f8faf","#419b89","#8e7f64","#6476be","#e07050","8faf1f"],
   },
 
@@ -223,6 +223,16 @@ Page({
   changeWeeks(e){
     this.setData({
       currentWeek:e.detail.current+1
+    })
+  },
+  cannelMask(){
+    this.setData({
+      isShow:false
+    })
+  },
+  showMask(){
+    this.setData({
+      isShow:true
     })
   }
 })

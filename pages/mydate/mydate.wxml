@@ -1,7 +1,7 @@
 <!--pages/mydate/mydate.wxml-->
 <view class="flex-row head">
   <view class="head-left flex-column j_c">
-    <image src="https://s3.bmp.ovh/imgs/2022/07/27/6289fe4ab016c74a.png" class="head-icon" />
+    <image src="https://s3.bmp.ovh/imgs/2022/07/27/6289fe4ab016c74a.png" class="head-icon" bindtap="showMask" />
     <text class="head-left-text one">第</text>
     <text class="head-left-text two">周</text>
     <text class="head-curr-week">{{currentWeek}}</text>
@@ -42,9 +42,17 @@
 </view>
 
 <!-- 详情弹框 -->
-<view class="mask" hidden="{{!isShow}}" catchtap="close"></view>
-<view class="modal flex-column j_c {{isShow ? 'show':'noShow'}}" style="background: {{current.color}};">
-  <view>{{current.sub}}</view>
-  <view>{{current.add}}</view>
-  <view>{{current.tec}}</view>
+<view class="mask" hidden="{{!isShow}}">
+<view class="mask-bac">
+  <view class="modal flex-column j_c {{isShow ? 'show':'noShow'}}" style="background: {{current.color}};">
+  <view class="input-box">
+    <input placeholder="HUST学号" 	placeholder-class="p-class" type="text" bindinput="content" class="phonecs" />
+    <input placeholder="密码" type="password" 	placeholder-class="p-class" bindinput="content" class="phonecs" /> 
+  </view>
+  <view class="button-box">
+    <button style="background-color: var(--bu-color); color:white">确认</button>   
+    <button bindtap="cannelMask">取消</button>                                                 
+ </view>
+</view>
+</view>
 </view>

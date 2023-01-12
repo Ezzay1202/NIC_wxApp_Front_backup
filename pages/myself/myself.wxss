@@ -25,12 +25,17 @@ page {
   flex-direction: column;
   background-color: rgba(106, 99, 166, 0.5);
 }
+
 .t-class{
-  font-size: 20rpx;
-  font-weight: 100;
+  flex:1;
+}
+.t-class-content{
+  margin-top: .2em !important; 
+  max-height: 50rpx;
+  overflow:scroll;
 }
 .t-class-title{
-  font-size: 20rpx;
+  font-size: 22rpx !important; 
   font-weight: 100;
 }
 
@@ -109,7 +114,6 @@ page {
   margin-bottom: .3em;
 }
 .myM{
- 
   display:flex;
   flex-direction: column;
   background-color: #FFFFFF;
@@ -120,6 +124,23 @@ page {
 }
 .myM-ing{
   padding: 1em;
+  max-height: 260rpx;
+  overflow:scroll;
+}
+.m-ing{
+  width: 85%;
+  align-items: stretch;
+  padding: 1em;
+  border:.2em outset #135ba4 ;
+  margin: .5em ;
+  border-radius:5%;
+  display:flex;
+  flex-direction: column;
+}
+.n-ing{
+  margin: .3em;
+  padding:.2em;
+  border-top: 1px dashed black;
 }
 .myM-history{
   padding: .5em;
@@ -137,7 +158,7 @@ page {
   display:flex;
   flex-direction: column;
 }
-.m .title{
+ .title{
   flex:1;
   font-size: 30rpx;
   max-height:3em;
@@ -203,7 +224,7 @@ page {
   --people-color:#a413a4
 }
 
-.m .n{
+ .n{
   display: flex;
   box-sizing: border-box;
 }

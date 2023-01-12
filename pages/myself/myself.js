@@ -19,7 +19,8 @@ Page({
       src:"/image/myi.png"
     },{
       name:"我的时间",
-      src:"/image/myt.png"
+      src:"/image/myt.png",
+      bindtap:"showMask"
     }],
     list: [{
       value: 'label_1',
@@ -72,7 +73,7 @@ Page({
     },{
       text:'排版',
     },],
-    work:[
+    todaywork:[
       {
         name:"概率论",
         add:"D888",
@@ -84,18 +85,58 @@ Page({
         add:"D888",
         time1:"8:00",
         time2:"10:00",
-      },{
-        name:"概率论",
-        add:"D888",
-        time1:"8:00",
-        time2:"10:00",
-      },{
-        name:"概率论",
-        add:"D888",
-        time1:"8:00",
-        time2:"10:00",
-      }
-    ]
+      },
+    ],
+    day:[{
+      date:"1/12 周四",
+      work:[
+        {
+          name:"概率论",
+          add:"D888",
+          time1:"8:00",
+          time2:"10:00",
+        },
+        {
+          name:"概率论",
+          add:"D888",
+          time1:"8:00",
+          time2:"10:00",
+        },
+      ],
+    },{
+      date:"1/12 周四",
+      work:[
+        {
+          name:"概率论",
+          add:"D888",
+          time1:"8:00",
+          time2:"10:00",
+        },
+        {
+          name:"概率论",
+          add:"D888",
+          time1:"8:00",
+          time2:"10:00",
+        },
+      ],
+    },{
+      date:"1/12 周四",
+      work:[
+        {
+          name:"概率论",
+          add:"D888",
+          time1:"8:00",
+          time2:"10:00",
+        },
+        {
+          name:"概率论",
+          add:"D888",
+          time1:"8:00",
+          time2:"10:00",
+        },
+      ],
+    }],
+    isShow:false,
   },
 
   /**
@@ -178,4 +219,14 @@ Page({
       })
     }
   },
+  cannelMask(){
+    this.setData({
+      isShow:false
+    })
+  },
+  showMask(){
+    this.setData({
+      isShow:true
+    })
+  }
 })

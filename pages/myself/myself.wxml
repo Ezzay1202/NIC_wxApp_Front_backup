@@ -11,7 +11,7 @@
 	<!-- 第2部分 -->
 	<view class='middle-container'>
 		<view class="view_2" wx:for="{{functions}}" wx:key="index">
-			<view class="view_tupianwenzi">
+			<view class="view_tupianwenzi" bindtap="{{item.bindtap}}">
 				<image class="image_tupian" src="{{item.src}}"></image>
 				<text class="text_1">{{item.name}}</text>
 			</view>
@@ -66,14 +66,27 @@
   </view>
 
   <view class="time-view">
-    <text class="text">我的时间</text> 
-    <view class="myday">
-      <block wx:for="{{work}}" wx:key="index">
+    <text class="text">我的时间</text>
+    <text style="margin-top: .4em; " class="date">今天</text> 
+    <view class="mytoday">
+      <block wx:for="{{todaywork}}" wx:key="index">
         <view class="mywork">
           <text style="font-size: 30rpx; font-weight: 500;">{{item.name}}</text>
           <text>{{item.add}}</text>
           <text>{{item.time1}}-{{item.time2}}</text>
         </view>
+      </block>
+    </view>
+    <view class="myday">
+      <block wx:for="{{day}}" wx:key="index">
+        <text class="date sticky">{{item.date}}</text>
+        <block wx:for="{{item.work}}" wx:key="index">
+        <view class="mywork">
+          <text style="font-size: 30rpx; font-weight: 500;">{{item.name}}</text>
+          <text>{{item.add}}</text>
+          <text>{{item.time1}}-{{item.time2}}</text>
+        </view>
+      </block>
       </block>
     </view> 
   </view>
@@ -86,3 +99,18 @@
     {{item.label}}
   </t-tab-bar-item>
 </t-tab-bar>
+
+<view class="mask" hidden="{{!isShow}}">
+<view class="mask-bac">
+  <view class="modal flex-column j_c {{isShow ? 'show':'noShow'}}" style="background: {{current.color}};">
+  <view class="input-box">
+    <input placeholder="HUST学号" 	placeholder-class="p-class" type="text" bindinput="content" class="phonecs" />
+    <input placeholder="密码" type="password" 	placeholder-class="p-class" bindinput="content" class="phonecs" /> 
+  </view>
+  <view class="button-box">
+    <button style="background-color: var(--bu-color); color:white">确认</button>   
+    <button bindtap="cannelMask">取消</button>                                                 
+ </view>
+</view>
+</view>
+</view>

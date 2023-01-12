@@ -161,7 +161,7 @@ Page({
         week:"周日",
         day:"1-9",
       }],
-      isShow: true,
+      isShow: false,
       color:["#8fb3a5","#be6476","#819b77","#b8a070","#1f8faf","#419b89","#8e7f64","#6476be","#e07050","8faf1f"],
   },
 

@@ -227,12 +227,39 @@ button:after {
 border: 0;
 }
 
-.pannel-item{
-  padding: .3em;
+.pannel-item {
+  display: flex;
+  align-items: center;
+  height: 96rpx;
+  padding: 0 32rpx;
+  font-size: 32rpx;
+  margin: 0 .5em;
+  margin-bottom: -13rpx;
+  background-color:var(--td-cell-bg-color);
 }
-.pannel-text{
+
+.pannel-item .last {
+  margin-bottom: -13rpx;
+}
+.pannel-label {
+  width: 160rpx;
+  margin-right: 32rpx;
+}
+
+.pannel-text {
+  flex: 1;
+  color: rgb(0, 0, 0);
+  opacity: 0.9;
   color: #0c0903;
 }
+.pannel-text.empty {
+  opacity: 0.26;
+}
+.demo-textarea {
+  padding: 32rpx;
+  background-color: rgb(236,242,254);
+}
+
 .pM{
   padding: 0em;
   background-color: var(--td-cell-bg-color);

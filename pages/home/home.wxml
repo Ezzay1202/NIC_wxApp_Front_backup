@@ -6,8 +6,8 @@
 </view>
 -->
 
-<t-tabs defaultValue="0" t-class="custom-tabs" sticky stickyProps="{{stickyProps}}">
-  <t-tab-panel label="工作台" value="0" >
+<swiper style="overflow: scroll; height:3000rpx"  current="1">
+  <swiper-item >
    <view class="first-container">
     <view class='middle-container'>
 		<view class="view_2" >
@@ -126,12 +126,28 @@
      </swiper-item>
     </swiper>
   </view>
-  </t-tab-panel>
-  <t-tab-panel label="资讯" value="1">
-  
-  </t-tab-panel>
-</t-tabs>
-<image></image>
+  </swiper-item>
+  <swiper-item style="background-color: white;">
+  <swiper class="swiper_show" 	indicator-dots="true">
+    <block wx:for="{{swiper_show}}" wx:key="index">
+      <swiper-item bindtap="goto" data-url="{{item.url}}">
+        <image src="{{item.image}}" mode="scaleToFill"></image>
+        <view class="swiper_text"> 
+         </view>
+      </swiper-item>
+    </block>
+  </swiper>
+  <view class="gird_view"> 
+    <view class="gird_view_2">
+      <text>查询稿件</text>
+    </view>
+    <view class="gird_view_2">
+      <text>历史稿件</text>
+    </view>
+  </view>
+  </swiper-item>
+</swiper>
+<image style="height:112rpx;"></image>
 <t-tab-bar value="{{value}}" bindchange="onChange" theme="tag" split="{{false}}">
   <t-tab-bar-item wx:for="{{list}}" wx:key="index" value="{{item.value}}" icon="{{item.icon}}" bindtap="onChange">
     {{item.label}}

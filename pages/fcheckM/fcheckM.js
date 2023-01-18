@@ -17,11 +17,25 @@ Page({
     })
   },
 
-  downloadFile: function (e) {
-    wx.downloadFile({
-      url: 'http://1.15.118.125:8080/NIC/work_files/' + this.data.file_download[0].name,
-      success:(res)=>{
-        console.log(res)
+  downloadFile(e) {
+    let arr = e.currentTarget.dataset.id
+    console.log(arr)
+    wx.showLoading({
+      title: '下载中...',
+      mask: true
+    })
+    wx.setClipboardData({
+      data: 'http://1.15.118.125:8080/NIC/work_files/' + this.data.file_download[arr].name,
+      success: (res) => {
+        wx.showToast({
+          title: '文件下载链接已复制到剪贴板',
+          icon: 'none'
+        })
+      },
+      complete: (res) => {
+        wx.hideLoading({
+          success: (res) => {},
+        })
       }
     })
   },
@@ -55,37 +69,67 @@ Page({
     min: 5, //最少字数
     max: 300, //最多字数 (根据自己需求改变) 
     file_download: [],
-    file_upload: []
+    file_upload: [],
+    date1Visible: false,
+    months: Array.from(new Array(12), (_, index) => ({
+      label: `${index + 1}月`,
+      value: index + 1,
+    })),
+
+    days: Array.from(new Array(31), (_, index) => ({
+      label: `${index + 1}日`,
+      value: index + 1
+    })),
+
+    hour: Array.from(new Array(24), (_, index) => ({
+      label: `${index}时`,
+      value: index,
+    })),
+
+    minute: Array.from(new Array(60), (_, index) => ({
+      label: `${index}分`,
+      value: index,
+    })),
   },
-  showPicker(e) {
-    const { mode } = e.currentTarget.dataset;
+  onClickPicker(e) {
+    
     this.setData({
-      mode,
-      [`${mode}Visible`]: true,
+      date1Visible: true,
     });
   },
-  hidePicker() {
-    const { mode } = this.data;
-    this.setData({
-      [`${mode}Visible`]: false,
-    });
-  },
-  onConfirm(e) {
-    const { value } = e.detail;
-    const { mode } = this.data;
-
-    console.log('confim', value);
-
-    this.setData({
-      [mode]: value,
-      [`${mode}Text`]: value,
-    });
-
-    this.hidePicker();
-  },
-
   onColumnChange(e) {
-    console.log('pick', e.detail.value);
+    console.log('picker pick:', e);
+  },
+  onPickerChange(e) {
+    
+    console.log('picker change:', );
+    this.setData({
+      date1Visible : false,
+      date1Value : e.detail.value,
+      date1CurrentValue : this.joinArray(e.detail.label),
+    });
+    if (e.detail.value.length == 4) {
+      this.setData({
+        list1: e.detail.value
+      })
+    }
+    if (e.detail.label[0] == e.detail.value[0] + '时') {
+      this.setData({
+        list2: e.detail.value
+      })
+    }
+    if (e.detail.label[0] == e.detail.value[0] + '文') {
+      this.setData({
+        list3: e.detail.value
+      })
+    }
+  },
+  onPickerCancel(e) {
+    console.log(e, '取消');
+    console.log('picker1 cancel:');
+    this.setData({
+      date1Visible : false,
+    });
   },
   // 星星点击事件
   starTap: function (e) {
@@ -164,7 +208,6 @@ Page({
   },
   // 文件上传
   uploadFile: function (e) {
-    console.log(e)
     wx.chooseMessageFile({
       count: 10, //选择文件的数量
       type: 'all', //选择文件的类型
@@ -186,6 +229,7 @@ Page({
   },
   // 预览附件
   previewFile(e) {
+    console.log(e)
     var string = ''
     string = e.currentTarget.dataset.path.substring(e.currentTarget.dataset.path.indexOf(".") + 1)
     if (string == 'png' || string == 'jpg' || string == 'gif' || string == 'jpeg') {
@@ -197,17 +241,38 @@ Page({
         urls: arr
       })
     } else {
-      // 文件预览
-      wx.openDocument({
-        fileType: string, // 文件类型
-        filePath: e.currentTarget.dataset.path, // 文件地址
-        success: function (res) {
-          console.log('成功')
-        },
-        fail: function (error) {
-          console.log("失败")
+      let tempFilePath = ''
+      wx.showLoading({
+        title: '请稍等...',
+      })
+      wx.downloadFile({
+        url: 'http://1.15.118.125:8080/NIC/work_files/' + this.data.file_download[e.currentTarget.dataset.id].name,
+        success: (res) => {
+          console.log(res)
+          tempFilePath = res.tempFilePath
+          // 文件预览
+          wx.openDocument({
+            filePath: tempFilePath, // 文件地址
+            showMenu: true,
+            success: function (res) {
+              //console.log('成功')
+            },
+            fail: function (error) {
+              console.log(error)
+              wx.showToast({
+                title: '无法预览！',
+                icon: 'error'
+              })
+            },
+            complete: (res) => {
+              wx.hideLoading({
+                success: (res) => {},
+              })
+            }
+          })
         }
       })
+
     }
   },
   /**

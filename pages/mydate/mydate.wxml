@@ -8,7 +8,7 @@
   </view>
   <view class="head-right flex-row j_b">
     <view class="flex-column week" wx:for="{{weekList}}" wx:key="list">
-      <text class="head-week {{item.isCurr && 'head-right-curr'}}">{{item.week}}</text>
+      <text class="head-week {{item.isCurr && 'head-right-curr'}}">{{item.weekday}}</text>
       <text class=" {{item.isCurr && 'head-right-curr'}}">{{item.isCurr?'今天':item.day}}</text>
     </view>
   </view>
@@ -23,11 +23,11 @@
       </view>
     </block>
   </view>
-  <swiper class="swiper" bindchange="changeWeeks" current="{{current}}" >
+  <swiper class="swiper" bindchange="changeWeeks" current="{{currentWeek}}">
       <block wx:for="{{weeks}}" wx:key="index">
         <swiper-item  class="container-right">
         <view class="con-item  j_c " wx:for="{{item.class}}" wx:key="index" style=
-      " grid-row:{{item.num1}}/{{item.num2}}; grid-column: {{item.week}}; background-color:{{color[item.color]}};"
+      " grid-row:{{item.num1}}/{{item.num2}}; grid-column: {{item.weekday}}; background-color:{{color[item.color]}};"
      catchtap="{{item.type ? 'getDetail':''}}" data-item="{{item}}">
         <view class="textbox">
           <text class="con-item-subj line_ellipsis">{{item.sub}}</text>
@@ -39,20 +39,4 @@
       </swiper-item>
       </block>
   </swiper>
-</view>
-
-<!-- 详情弹框 -->
-<view class="mask" hidden="{{!isShow}}">
-<view class="mask-bac">
-  <view class="modal flex-column j_c {{isShow ? 'show':'noShow'}}" style="background: {{current.color}};">
-  <view class="input-box">
-    <input placeholder="HUST学号" 	placeholder-class="p-class" type="text" bindinput="content" class="phonecs" />
-    <input placeholder="密码" type="password" 	placeholder-class="p-class" bindinput="content" class="phonecs" /> 
-  </view>
-  <view class="button-box">
-    <button style="background-color: var(--bu-color); color:white">确认</button>   
-    <button bindtap="cannelMask">取消</button>                                                 
- </view>
-</view>
-</view>
 </view>

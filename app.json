@@ -1,12 +1,12 @@
 {
-  "pages":[ 
-    "pages/fcheckM/fcheckM",
+  "pages":[
     "pages/home/home",
-    "pages/publishedM/publishedM",
+    "pages/publishM/publishM",
+    "pages/fcheckM/fcheckM",  
     "pages/mydate/mydate",
     "pages/myself/myself",
+    "pages/publishedM/publishedM",
     "pages/login/login",
-    "pages/publishM/publishM",
     "pages/inquiryM/inquiryM",
     "pages/historyM/historyM",
     "pages/seeM/seeM",

@@ -1,7 +1,6 @@
 /* pages/home/home.wxss */
 page{
   background-color: rgb(245, 245,245);
-  --td-tab-nav-bg-color: rgb(245, 245,245);
 }
 .custom-tabs{
   background-color: blue;
@@ -312,4 +311,35 @@ van-count-down>text{
   font-size:30rpx;
   padding: .3rem .3rem 0;
   color:#a63f53;
+}
+
+.swiper_show{
+  height: 330rpx;
+}
+.swiper_show image{
+  height: 320rpx;
+  width: 750rpx;
+}
+.swiper_show text{
+  color: white;
+}
+.swiper_text{
+  margin: -10rpx 0 0;
+  text-align: center;
+  background-color: #25171a48
+}
+.gird_view{
+  height: 80rpx;
+  display: flex;
+  margin: -5rpx 3% ;
+}
+.gird_view_2{
+  width: 50%;
+  margin: 0 5rpx;
+  text-align: center;
+  padding:.5em;
+  background-color: #426784;
+}
+.gird_view_2>text{
+  color: white;
 }

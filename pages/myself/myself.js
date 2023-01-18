@@ -194,6 +194,13 @@ Page({
   onShareAppMessage() {
 
   },
+  goto(e){
+    console.log(e)
+    let url=e.currentTarget.dataset.url
+    wx.navigateTo({
+      url:`../seeM/seeM?url=${url}`,
+    })
+  },
   onChange(e) {
     //tabbar
     this.setData({

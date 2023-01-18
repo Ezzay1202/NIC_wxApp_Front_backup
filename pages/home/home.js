@@ -85,7 +85,7 @@ const swiperList = [{
 ];
 Component({
   data: {
-    functions: [{
+    functions_show: [{
       name: "待接任务",
       img: '/image/publishedM.png',
       goto: "/pages/publishedM/publishedM"
@@ -97,7 +97,28 @@ Component({
       name: "审核稿件",
       img: '/image/checkM.png',
       goto: "/pages/checkM/checkM"
+    }],
+    functions:[ {
+      name: "待接任务",
+      img: '/image/publishedM.png',
+      goto: "/pages/publishedM/publishedM"
     }, {
+      name: "查询稿件",
+      img: '/image/apply.png',
+      goto: "/pages/inquiryM/inquiryM"
+    }, {
+      name: "审核稿件",
+      img: '/image/checkM.png',
+      goto: "/pages/checkM/checkM"
+    },{
+      name: "提交稿件",
+      img: '/image/submitM.png',
+      goto: "/pages/submitM/submitM"
+    },{
+      name: "历史稿件",
+      img: '/image/submitM.png',
+      goto: "/pages/historyM/historyM"
+    },{
       name: "提交稿件",
       img: '/image/submitM.png',
       goto: "/pages/submitM/submitM"
@@ -106,6 +127,11 @@ Component({
       img: '/image/submitM.png',
       goto: "/pages/historyM/historyM"
     }],
+    stickyProps:{
+      zIndex:4,
+    },
+    showfunctions:true,
+    showtime:true,
     current: 0,
     duration: 500,
     interval: 5000,
@@ -133,9 +159,115 @@ Component({
         icon: 'user'
       },
     ],
+    todaywork:[
+      {
+        name:"概率论",
+        add:"D888",
+        time1:"8:00",
+        time2:"10:00",
+      },
+      {
+        name:"概率论",
+        add:"D888",
+        time1:"8:00",
+        time2:"10:00",
+      },
+    ],
+    day:[{
+      date:"1/12 周四",
+      work:[
+        {
+          name:"概率论",
+          add:"D888",
+          time1:"8:00",
+          time2:"10:00",
+        },
+        {
+          name:"概率论",
+          add:"D888",
+          time1:"8:00",
+          time2:"10:00",
+        },
+      ],
+    },{
+      date:"1/12 周四",
+      work:[
+        {
+          name:"概率论",
+          add:"D888",
+          time1:"8:00",
+          time2:"10:00",
+        },
+        {
+          name:"概率论",
+          add:"D888",
+          time1:"8:00",
+          time2:"10:00",
+        },
+      ],
+    },{
+      date:"1/12 周四",
+      work:[
+        {
+          name:"概率论",
+          add:"D888",
+          time1:"8:00",
+          time2:"10:00",
+        },
+        {
+          name:"概率论",
+          add:"D888",
+          time1:"8:00",
+          time2:"10:00",
+        },
+      ],
+    }],
+    step:[{
+      text:'已接稿',
+    },{
+      text:'已写稿',
+    },{
+      text:'编辑部审稿',
+    },{
+      text:'辅导员审稿',
+    },{
+      text:'排版',
+    },],
+    listm:[
+      {
+        text:"学习二十大，管院在行动 | 本科第六党支部开展11月主题党日活动", date:"2022-11-30" , location:"管理学院105",people:[{key:1,name:"陶柯羽"},{key:2,name:"高原"},{key:5,name:"徐文慧"},{key:4,name:"张赫"},],url:"https://mp.weixin.qq.com/s/x-zHT_8DiS7T5NHC91Z3zA",score:4.5},
+        {
+          text:"学习二十大，管院在行动 | 本科第六党支部开展11月主题党日活动", date:"2022-11-30" , location:"管理学院105",people:[{key:1,name:"陶柯羽"},{key:2,name:"高原"},{key:5,name:"徐文慧"},{key:4,name:"张赫"},],url:"https://mp.weixin.qq.com/s/x-zHT_8DiS7T5NHC91Z3zA",score:4.5},
+          
+    ],
+  time:2*24*60*60*1000,
+  timeData:{},
   },
 
   methods: {
+    goto(e){
+      console.log(e)
+      let url=e.currentTarget.dataset.url
+      wx.navigateTo({
+        url:`../seeM/seeM?url=${url}`,
+      })
+    },
+    onTimeChange(e) {
+      console.log(e)
+    this.setData({
+      timeData: e.detail,
+    });
+  },
+    showFunctions(){
+      this.setData({
+        showfunctions:!this.data.showfunctions
+      })
+    },
+    showTimes(){
+      this.setData({
+        showtime:!this.data.showtime
+      })
+    },
     goTomoudle2(e) {
       console.log("yes", e)
       let index = e.currentTarget.dataset.index

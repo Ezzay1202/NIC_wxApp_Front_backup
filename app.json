@@ -1,15 +1,15 @@
 {
   "pages":[ 
-    "pages/mydate/mydate",
-    "pages/myself/myself",
+    "pages/fcheckM/fcheckM",
     "pages/home/home",
     "pages/publishedM/publishedM",
+    "pages/mydate/mydate",
+    "pages/myself/myself",
     "pages/login/login",
     "pages/publishM/publishM",
     "pages/inquiryM/inquiryM",
     "pages/historyM/historyM",
     "pages/seeM/seeM",
-    "pages/fcheckM/fcheckM",  
     "pages/submitM/submitM",
     "pages/checkM/checkM", 
     "pages/apply/apply", 

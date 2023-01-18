@@ -5,7 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-      currentWeek: 1,
+      current:10,
+      currentWeek: 10,
       time: {
         one: [{
             index: 1,

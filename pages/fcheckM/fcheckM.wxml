@@ -67,7 +67,42 @@
     <button bindtap="uploadFile" >选择稿件及照片</button>
     </view>
     <!--提交评价-->
-   <button class='btn' bindtap='handleBtn'>提交评价</button>
   </block>
+  <block wx:if="{{isManagement}}">
+    <view class="pM filebox">
+      <t-cell
+  title="选择日期"
+  hover
+  note="{{dateText || ''}}"
+  arrow
+  data-mode="date"
+  bindtap="showPicker"
+  class="test"
+  t-class="pannel-item"
+  t-class-title="pannel-text"
+      />
+      <!-- 年月日 -->
+      <t-date-time-picker
+  title="选择日期"
+  visible="{{dateVisible}}"
+  mode="hour"
+  defaultValue="{{date}}"
+  format="MM-DD-HH"
+  bindchange="onConfirm"
+  bindpick="onColumnChange"
+  bindcancel="hidePicker"
+  start="{{start}}"
+  end="{{end}}"
+      />
+      <view class="conts">
+       <textarea class="areas" style="height:200rpx" placeholder='请输入您对排版的备注'  bindinput="inputs"> 
+           <!-- <text class="currentWordNumber">{{currentWordNumber| }}/{{max}}</text> -->
+       </textarea>
+   </view>
+   
+    </view>
+  </block>
+  <button class='btn' bindtap='handleBtn'>提交评价</button>
+
    
 

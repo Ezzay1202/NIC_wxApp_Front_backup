@@ -1,6 +1,7 @@
 {
   "pages":[
-    "pages/home/home",
+    "pages/home/home",    
+    "pages/myinformation/myinformation",
     "pages/publishM/publishM",
     "pages/fcheckM/fcheckM",  
     "pages/mydate/mydate",

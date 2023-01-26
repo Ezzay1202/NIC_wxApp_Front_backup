@@ -6,9 +6,9 @@
 </view>
 -->
 
-<swiper style="overflow: scroll; height:3000rpx"  current="1">
+<swiper style="overflow: scroll; height:3000rpx"  current="0">
   <swiper-item >
-   <view class="first-container">
+    <view class="first-container">
     <view class='middle-container'>
 		<view class="view_2" >
       <block wx:for="{{functions_show}}"  wx:key="index">
@@ -31,8 +31,8 @@
 			</view>
     </block>
     </view>
-   </view>
-   <view class="outview">
+    </view>
+    <view class="outview">
     <text class="text">我的时间</text>
     <text style="margin-top: .4em; " class="date">今天</text> 
     <view class="flex-column">
@@ -61,8 +61,8 @@
       </block>
       </block>
     </view> 
-  </view>
-  <view class="outview worklist">
+    </view>
+    <view class="outview worklist">
     <text class="text">我的工作</text>
     <swiper class="swiper">
       <swiper-item class="swiper">
@@ -121,11 +121,10 @@
        </block>
       </view>
     </view>
-
       </block>
      </swiper-item>
     </swiper>
-  </view>
+    </view>
   </swiper-item>
   <swiper-item style="background-color: white;">
   <swiper class="swiper_show" 	indicator-dots="true">
@@ -145,8 +144,29 @@
       <text>历史稿件</text>
     </view>
   </view>
+  <view class="">
+    <view>
+      
+    </view>
+  </view>
   </swiper-item>
 </swiper>
+
+<view class="mask" hidden="{{!isShow}}">
+<view class="mask-bac">
+  <view class="modal flex-column j_c {{isShow ? 'show':'noShow'}}" style="background: {{current.color}};">
+  <view class="input-box">
+    <input placeholder="HUST学号" 	placeholder-class="p-class" type="text" bindinput="content" class="phonecs" />
+    <input placeholder="密码" type="password" 	placeholder-class="p-class" bindinput="password" class="phonecs" /> 
+  </view>
+  <view class="mbutton-box">
+    <button style="background-color: var(--bu-color); color:white" bindtap="kcbSpider">确认</button>   
+    <button bindtap="cannelMask">取消</button>                                                 
+ </view>
+ </view>
+</view>
+    </view>
+
 <image style="height:112rpx;"></image>
 <t-tab-bar value="{{value}}" bindchange="onChange" theme="tag" split="{{false}}">
   <t-tab-bar-item wx:for="{{list}}" wx:key="index" value="{{item.value}}" icon="{{item.icon}}" bindtap="onChange">

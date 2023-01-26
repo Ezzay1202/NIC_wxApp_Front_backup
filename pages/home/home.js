@@ -75,6 +75,7 @@ Page({
 
 Component({
   data: {
+    isShow:false,
     functions_show: [{
       name: "待接任务",
       img: '/image/publishedM.png',

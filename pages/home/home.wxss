@@ -1,6 +1,7 @@
 /* pages/home/home.wxss */
 page{
   background-color: rgb(245, 245,245);
+  --bu-color:#0b1f51;
 }
 .custom-tabs{
   background-color: blue;
@@ -332,6 +333,7 @@ van-count-down>text{
   height: 80rpx;
   display: flex;
   margin: -5rpx 3% ;
+  box-shadow: 10rpx 10rpx  0 -10rpx #efefef;
 }
 .gird_view_2{
   width: 50%;
@@ -342,4 +344,88 @@ van-count-down>text{
 }
 .gird_view_2>text{
   color: white;
+}
+
+.mask-bac{
+  z-index:11;
+  position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+}
+.modal {
+  width: 600rpx;
+  height: 750rpx;
+  border-radius: 20rpx;
+  position: fixed;
+  z-index: 11;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #aef4e0;
+  box-sizing: border-box;
+  padding: 1em;
+  color: #7e7a7a;
+  font-size: 27rpx;
+  line-height: 40rpx;
+}
+.modal .input-box{
+  margin-top: 100rpx;
+  margin-left: 25rpx;
+  padding: .3em;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+}
+
+.phonecs{
+  background-color: #e5f4ae;
+  margin-bottom: 1em;
+  color: black;
+  width:450rpx;
+  font-size: 30rpx;
+  padding: .5em;
+  border: 6rpx outset #0f0c0d;
+}
+
+.passwordcs{
+  width:450rpx;
+  font-size: 30rpx;
+  padding: .5em;
+  border: 6rpx outset #0f0c0d;
+}
+.modal .mbutton-box{
+  position:absolute;
+  bottom:100rpx;
+  width:540rpx;
+  margin: .5em 0;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.mbutton-box >button{
+  flex:1;
+  width: 300rpx;
+  font-size: 29rpx;
+  margin: 0 25rpx .5em ;
+  padding: 0;
+  color: var(--bu-color);
+  background-color: #aef4e0;
+  border: 1px solid var(--bu-color) !important;
+  border-radius: 2%;
+}
+
+.modal.noShow {
+  top: -0%;
+  opacity: 0;
+  transition: all 1s;
+}
+
+.modal.show {
+  top: 50%;
+  transition: all 1s;
+  opacity: 1;
 }

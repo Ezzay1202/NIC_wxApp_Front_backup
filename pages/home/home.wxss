@@ -357,7 +357,7 @@ van-count-down>text{
 }
 .modal {
   width: 600rpx;
-  height: 750rpx;
+  height: 950rpx;
   border-radius: 20rpx;
   position: fixed;
   z-index: 11;
@@ -379,12 +379,12 @@ van-count-down>text{
   flex-direction: column;
 }
 
-.phonecs{
+.inputcs{
   background-color: #e5f4ae;
   margin-bottom: 1em;
   color: black;
   width:450rpx;
-  font-size: 30rpx;
+  font-size: 25rpx;
   padding: .5em;
   border: 6rpx outset #0f0c0d;
 }
@@ -395,22 +395,47 @@ van-count-down>text{
   padding: .5em;
   border: 6rpx outset #0f0c0d;
 }
+.pannel-item {
+  display: flex;
+  align-items: center;
+  border:6rpx outset;
+
+}
+.pannel-item-other{
+  margin: 0 1em;
+  margin-bottom: -13rpx;
+  background-color:#f0ecfe;
+  border-radius: 5%;
+}
+.pannel-item .last {
+  margin-bottom: -13rpx;
+}
+.pannel-label {
+  width: 160rpx;
+  margin-right: 32rpx;
+}
+.pannel-text {
+  flex: 1;
+  color: rgb(0, 0, 0);
+  opacity: 0.9;
+}
+.pannel-text.empty {
+  opacity: 0.26;
+}
 .modal .mbutton-box{
   position:absolute;
   bottom:100rpx;
   width:540rpx;
   margin: .5em 0;
   display:flex;
-  flex-direction: column;
   align-items: center;
   box-sizing: border-box;
 }
 
 .mbutton-box >button{
   flex:1;
-  width: 300rpx;
   font-size: 29rpx;
-  margin: 0 25rpx .5em ;
+  margin: 0 10rpx .5em ;
   padding: 0;
   color: var(--bu-color);
   background-color: #aef4e0;

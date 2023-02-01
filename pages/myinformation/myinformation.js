@@ -15,7 +15,7 @@ Page({
       color:"black",
       btext:"烟霞状元",
       stext:"昵称",
-      f:""
+      f:"changeName"
     },{
       column:"3/5",
       row:"2/3",
@@ -43,7 +43,7 @@ Page({
       color:"#0e6e8c",
       btext:"13848440908",
       stext:"联系方式",
-      f:""
+      f:"changeName"
     },{
       column:"1/2",
       row:"5/6",
@@ -73,7 +73,17 @@ Page({
       stext:"总绩效",
       class:"-max",
       f:""
-    }]
+    }],
+    showName:false,
+    index:0,
+  },
+
+  changeName(e){
+    console.log(e)
+    this.setData({
+      index:e.currentTarget.dataset.index,
+      showName:!this.data.showName
+    })
   },
 
   /**

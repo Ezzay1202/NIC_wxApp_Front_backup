@@ -1,5 +1,13 @@
 // pages/home/home.js
 const app = getApp()
+const date = new Date()
+const year = date.getFullYear()
+const month = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1)
+const day = date.getDate()
+const hour = date.getHours()
+const minute = date.getMinutes()
+let place1 = ''
+
 Page({
 
   /**
@@ -71,11 +79,15 @@ Page({
   }
 })
 
-
+const PICKER_KEY = {
+  DATE1: 'date1',
+  DATE2: 'date2',
+  People: 'people',
+};
 
 Component({
   data: {
-    isShow:false,
+    isShow:true,
     functions_show: [{
       name: "待接任务",
       img: '/image/publishedM.png',
@@ -243,10 +255,95 @@ Component({
     url:"https://mp.weixin.qq.com/s/7UwvBVLlALpGn0SYwd8y1Q",
     image:"http://mmbiz.qpic.cn/mmbiz_png/gbpAf4uUr2A9OWFDMY9bsxibgQkKflB0fNND7xgVIts7Y093Kibib8jkwIanJ7a9FFQpBK8rthUlt2Pdc0TaDgqaA/0?wx_fmt=png",
     name:"我们的故事——管理学院学生工作2022年度记忆"
-  }]
+  }],
+
+  PICKER_KEY,
+    [`${PICKER_KEY.DATE1}Visible`]: false,
+    [`${PICKER_KEY.DATE2}Visible`]: false,
+    [`${PICKER_KEY.People}Visible`]: false,
+    pickerTitle: '',
+
+    months: Array.from(new Array(12), (_, index) => ({
+      label: `${index + 1}月`,
+      value: index + 1,
+    })),
+
+    days: Array.from(new Array(31), (_, index) => ({
+      label: `${index + 1}日`,
+      value: index + 1
+    })),
+
+    hour: Array.from(new Array(24), (_, index) => ({
+      label: `${index}时`,
+      value: index,
+    })),
+
+    minute: Array.from(new Array(60), (_, index) => ({
+      label: `${index}分`,
+      value: index,
+    })),
+    group:[{label:"我",value:"我"},{label:"全部",value:"全部"},{label:"组长团",value:"组长团"},{label:"技术部",value:"技术部"},{label:"人事部",value:"人事部"},{label:"记者团",value:"记者团"}],
+
+    [`${PICKER_KEY.DATE1}Value`]: [month, day, hour, minute],
+    [`${PICKER_KEY.DATE2}Value`]: [hour, minute],
+    [`${PICKER_KEY.People}Value`]: []
   },
 
   methods: {
+    onClickPicker(e) {
+      const {
+        key
+      } = e?.currentTarget?.dataset;
+      console.log('picker pick:', place1);
+      this.setData({
+        [`${key}Visible`]: true,
+      });
+    },
+
+    onColumnChange(e) {
+      console.log('picker pick:', e);
+    },
+    onPickerChange(e) {
+      const {
+        key
+      } = e?.currentTarget?.dataset;
+      console.log('picker change:', );
+      this.setData({
+        [`${key}Visible`]: false,
+        [`${key}Value`]: e.detail.value,
+        [`${key}CurrentValue`]: this.joinArray(e.detail.label),
+      });
+      if (e.detail.value.length == 4) {
+        this.setData({
+          list1: e.detail.value
+        })
+      }
+      if (e.detail.label[0] == e.detail.value[0] + '时') {
+        this.setData({
+          list2: e.detail.value
+        })
+      }
+      if (e.detail.label[0] == e.detail.value[0] + '文') {
+        this.setData({
+          list3: e.detail.value
+        })
+      }
+    },
+    onPickerCancel(e) {
+      const {
+        key
+      } = e?.currentTarget?.dataset;
+      console.log(e, '取消');
+      console.log('picker1 cancel:');
+      this.setData({
+        [`${key}Visible`]: false,
+      });
+    },
+    addWorks(){
+      this.setData({
+        isShow:"true"    
+      })
+    },
     goto(e){
       console.log(e)
       let url=e.currentTarget.dataset.url
@@ -255,7 +352,6 @@ Component({
       })
     },
     onTimeChange(e) {
-      console.log(e)
     this.setData({
       timeData: e.detail,
     });

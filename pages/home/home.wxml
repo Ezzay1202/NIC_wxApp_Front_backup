@@ -45,7 +45,7 @@
       </block>
       <view class="button-box">
       <button bindtap="showTimes">查看所有日程</button>
-      <button style="background-color: #307090;">添加日程</button>
+      <button style="background-color: #307090;" bindtap="addWorks">添加日程</button>
       <button>查看课程表</button>
       </view>
     </view>
@@ -156,12 +156,29 @@
 <view class="mask-bac">
   <view class="modal flex-column j_c {{isShow ? 'show':'noShow'}}" style="background: {{current.color}};">
   <view class="input-box">
-    <input placeholder="HUST学号" 	placeholder-class="p-class" type="text" bindinput="content" class="phonecs" />
-    <input placeholder="密码" type="password" 	placeholder-class="p-class" bindinput="password" class="phonecs" /> 
+    <input placeholder="事项名称" 	placeholder-class="p-class" type="text" bindinput="content" class="inputcs" />
+    <input placeholder="地点" type="password" 	placeholder-class="p-class" bindinput="password" class="inputcs" /> 
+    <view class="inputcs pannel-item" bind:tap="onClickPicker" data-key="{{PICKER_KEY.DATE1}}">
+        <view class="pannel-label">起始时间</view>
+        <view class="pannel-text {{date1CurrentValue.length ? '' : 'empty'}}"> {{date1CurrentValue || '选择时间' }}</view>
+        <t-icon name="chevron-right" color="rgba(0, 0, 0, 0.26)" size="24px" />
+      </view>
+
+    <view class="inputcs pannel-item" bind:tap="onClickPicker" data-key="{{PICKER_KEY.DATE2}}">
+        <view class="pannel-label">结束时间</view>
+        <view class="pannel-text {{date2CurrentValue.length ? '' : 'empty'}}"> {{date2CurrentValue || '选择时间' }}</view>
+        <t-icon name="chevron-right" color="rgba(0, 0, 0, 0.26)" size="24px" />
+      </view>
+      <view class="inputcs pannel-item" bind:tap="onClickPicker" data-key="{{PICKER_KEY.People}}">
+        <view class="pannel-label">相关人员</view>
+        <view class="pannel-text {{date1CurrentValue.length ? '' : 'empty'}}"> {{date1CurrentValue || '选择时间' }}</view>
+        <t-icon name="chevron-right" color="rgba(0, 0, 0, 0.26)" size="24px" />
+      </view>
   </view>
   <view class="mbutton-box">
+    <button bindtap="cannelMask">取消</button>    
     <button style="background-color: var(--bu-color); color:white" bindtap="kcbSpider">确认</button>   
-    <button bindtap="cannelMask">取消</button>                                                 
+                                                 
  </view>
  </view>
 </view>
@@ -173,3 +190,18 @@
     {{item.label}}
   </t-tab-bar-item>
 </t-tab-bar>
+
+<t-picker visible="{{date1Visible}}" value="{{date1Value}}" data-key="date1" title="{{pickerTitle}}" cancelBtn="取消" confirmBtn="确认" bindchange="onPickerChange" bindpick="onColumnChange" bindcancel="onPickerCancel">
+      <t-picker-item options="{{months}}"></t-picker-item>
+      <t-picker-item options="{{days}}"></t-picker-item>
+      <t-picker-item options="{{hour}}"></t-picker-item>
+      <t-picker-item options="{{minute}}"></t-picker-item>
+    </t-picker>
+
+    <t-picker visible="{{date2Visible}}" value="{{date2Value}}" data-key="date2" title="{{pickerTitle}}" cancelBtn="取消" confirmBtn="确认" bindchange="onPickerChange" bindpick="onColumnChange" bindcancel="onPickerCancel">
+      <t-picker-item options="{{hour}}"></t-picker-item>
+      <t-picker-item options="{{minute}}"></t-picker-item>
+    </t-picker>
+    <t-picker visible="{{peopleVisible}}" value="{{peopleValue}}" data-key="people" title="{{pickerTitle}}" cancelBtn="取消" confirmBtn="确认" bindchange="onPickerChange" bindpick="onColumnChange" bindcancel="onPickerCancel">
+      <t-picker-item options="{{group}}"></t-picker-item>
+    </t-picker>

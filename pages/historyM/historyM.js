@@ -1,11 +1,67 @@
+const image = 'https://tdesign.gtimg.com/miniprogram/images/example2.png';
+
 
 // pages/historyM/historyM.js
 Page({
-
+  offsetTopList: [],
   /**
    * 页面的初始数据
    */
   data: {
+      sideBarIndex: 1,
+      scrollTop: 0,
+      categories: [
+        {
+          label: '教学建设',
+          title: '教学建设',
+          items:[
+            {label:"研讨会",checked:true},
+            {label:"座谈会",checked:false},
+            {label:"座谈会"},
+            {label:"座谈会"},
+            {label:"座谈会"},
+            {label:"座谈会"},
+            {label:"座谈会"},
+            {label:"座谈会"},
+            {label:"管院国奖故事"},
+          ]
+        },
+        {
+          label: '选项',
+          title: '标题',
+          badgeProps: {
+            dot: true,
+          },
+          items:[
+            {label:"研讨会"}
+          ]
+        },
+        {
+          label: '选项',
+          title: '标题',
+          items:[
+            {label:"研讨会"}
+          ]
+        },
+        {
+          label: '选项',
+          title: '标题',
+          badgeProps: {
+            count: 6,
+          },
+          items:[
+            {label:"研讨会"}
+          ]
+        },
+        {
+          label: '选项',
+          title: '标题',
+          items:[
+            {label:"研讨会"}
+          ]
+        },
+      ],
+    
     currentDate: new Date().getTime(),
     minDate: new Date().getTime(),
     switch1:'true',
@@ -40,8 +96,8 @@ Page({
         {
           text:"五连冠！管理学院乒乓球队再创佳绩", date:"2022-11-24" , location:"光谷体育馆",people:[{key:5,name:"黄颖澜"},{key:4,name:"方权泽"},],url:"https://mp.weixin.qq.com/s/QBZr1nPlyee_0WrJaz_LYg" ,score:4.5
         }
-    ]
-
+    ],
+    index1:0
   },
 
   goto(e){
@@ -67,14 +123,54 @@ Page({
       currentDate: event.detail,
     });
   },
-  
+  onLoad() {
+    const query = wx.createSelectorQuery().in(this);
+    query
+      .selectAll('.title')
+      .boundingClientRect((rects) => {
+        this.offsetTopList = rects.map((item) => item.top);
+      })
+      .exec();
+  },
+  onSideBarChange(e) {
+    const { value } = e.detail;
+
+    this.setData({ sideBarIndex: value, scrollTop: this.offsetTopList[value] });
+  },
+  onScroll(e) {
+    const { scrollTop } = e.detail;
+    const threshold = 10; // 下一个标题与顶部的距离
+
+    if (scrollTop < threshold) {
+      this.setData({ sideBarIndex: 0 });
+      return;
+    }
+
+    const index = this.offsetTopList.findIndex((top) => top > scrollTop && top - scrollTop <= threshold);
+
+    if (index > -1) {
+      this.setData({ sideBarIndex: index });
+    }
+  },
+  checkedTag(e){
+    let index1=this.data.index1
+    let index2=e.currentTarget.dataset.index2
+    let checked = 'categories[' + index1 + '].items[' + index2 + '].checked'
+    console.log(e, index1,index2,checked)
+    this.setData({
+      [checked]:!this.data.categories[index1].items[index2].checked
+    })
+    console.log(this.data.categories[index1].items[index2].checked)
+  },
+  checkedTags(e){
+    this.setData({
+      index1: e.currentTarget.dataset.index1
+    })
+  },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad(options) {
-
-  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成

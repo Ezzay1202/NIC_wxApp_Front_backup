@@ -85,6 +85,11 @@ Page({
       showName:!this.data.showName
     })
   },
+  cannelMask() {
+    this.setData({
+      showName: false
+    })
+  },
 
   /**
    * 生命周期函数--监听页面加载

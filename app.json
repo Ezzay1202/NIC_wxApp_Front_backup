@@ -1,16 +1,16 @@
 {
   "pages":[
+    "pages/people/people",
+    "pages/login/login",
     "pages/home/home", 
-
+    "pages/submitP/submitP",
+    "pages/myself/myself",
     "pages/myinformation/myinformation",
-
     "pages/historyM/historyM",
     "pages/publishM/publishM",
     "pages/fcheckM/fcheckM",  
     "pages/mydate/mydate",
-    "pages/myself/myself",
     "pages/publishedM/publishedM",
-    "pages/login/login",
     "pages/inquiryM/inquiryM",
     "pages/seeM/seeM",
     "pages/submitM/submitM",

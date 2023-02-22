@@ -87,7 +87,40 @@ const PICKER_KEY = {
 
 Component({
   data: {
-    isShow:true,
+    picture:[
+      {
+        img:"https://s3.bmp.ovh/imgs/2023/01/10/5032ffa435b9888b.png",
+        people:"乔晟豪"
+      },{
+        img:"https://s3.bmp.ovh/imgs/2023/01/10/5032ffa435b9888b.png",
+        people:"乔晟豪"
+      },{
+        img:"https://s3.bmp.ovh/imgs/2023/01/10/5032ffa435b9888b.png",
+        people:"乔晟豪"
+      },{
+        img:"https://s3.bmp.ovh/imgs/2023/01/10/5032ffa435b9888b.png",
+        people:"乔晟豪"
+      },{
+        img:"https://s3.bmp.ovh/imgs/2023/01/10/5032ffa435b9888b.png",
+        people:"乔晟豪"
+      },
+    ],
+    boxshow:[
+      {
+        image:"http://mmbiz.qpic.cn/mmbiz_jpg/gbpAf4uUr2CPGoKg3rLAVNiaIjRHRgucKpf2D0xGKXEABncIfmRpeiaAvvRjlibycFw2r9EOiaHJYDOJ2yQp23PX3Q/0?wx_fmt=jpeg",
+        text:"W.0.W | 我与兔年那些不得不说的事！"
+      },
+      {
+        image:"https://mmbiz.qpic.cn/mmbiz_jpg/gbpAf4uUr2Ac8wK5HibkMhAmDeXRps44clAPtULQic6IObMB7rB5uscibPfTbM0GqLwXsFrZqR2GCyg0FSKicc0uPg/0?wx_fmt=jpeg",
+        text:"M.O.M新春特辑 | 年味儿速递：快看！这些管院er用镜头记录下了年前幸福的瞬间~"
+      },
+      {
+        image:"https://mmbiz.qpic.cn/mmbiz_png/gbpAf4uUr2B1uZSbxb6SdAEtqm0fNDDSL1arFMsgCcENBibMQbtpRREMp47auxa2uqHzdKXHlcTqRgqasGTpAKg/0?wx_fmt=png",
+        text:"W.O.W | 惊！原来距离我成为学霸需要的时间是......"
+      }
+
+    ],
+    isShow:false,
     functions_show: [{
       name: "待接任务",
       img: '/image/publishedM.png',
@@ -122,9 +155,9 @@ Component({
       img: '/image/submitM.png',
       goto: "/pages/historyM/historyM"
     },{
-      name: "提交稿件",
+      name: "提交排版",
       img: '/image/submitM.png',
-      goto: "/pages/submitM/submitM"
+      goto: "/pages/submitP/submitP"
     },{
       name: "历史稿件",
       img: '/image/submitM.png',
@@ -364,6 +397,11 @@ Component({
     showTimes(){
       this.setData({
         showtime:!this.data.showtime
+      })
+    },
+    cannelMask() {
+      this.setData({
+        isShow: false
       })
     },
     goTomoudle2(e) {

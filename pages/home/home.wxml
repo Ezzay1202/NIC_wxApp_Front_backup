@@ -6,8 +6,8 @@
 </view>
 -->
 
-<swiper style="overflow: scroll; height:3000rpx" current="1">
-  <swiper-item>
+<swiper style="overflow: scroll; height:3000rpx" current="1" >
+  <swiper-item >
     <view class="first-container">
       <view class='middle-container'>
         <view class="view_2">
@@ -122,7 +122,7 @@
       </swiper>
     </view>
   </swiper-item>
-  <swiper-item style="background-color: white;">
+  <swiper-item style="background-color: white; " >
     <swiper class="swiper_show" indicator-dots="true">
       <block wx:for="{{swiper_show}}" wx:key="index">
         <swiper-item bindtap="goto" data-url="{{item.url}}">

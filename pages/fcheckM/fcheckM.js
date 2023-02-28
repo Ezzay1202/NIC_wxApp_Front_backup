@@ -53,6 +53,16 @@ Page({
 
     isManagement:true,
     mag: {},
+    people:[{
+      name:"乔晟豪",
+      job:"文",
+    },{
+      name:"蔡毅洲",
+      job:"摄",
+    },{
+      name:"李钰",
+      job:"审稿",
+    },],
     tag: [],
     attitude: true,
     code: 1,

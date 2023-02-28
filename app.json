@@ -1,23 +1,21 @@
 {
-  "pages":[
-    "pages/people/people",
-
-    "pages/mydate/mydate",
-    "pages/myinformation/myinformation",
-
+  "pages":[   
+    "pages/checkM/checkM", 
+    "pages/fcheckM/fcheckM",  
     "pages/home/home",
-
+    "pages/mywork/mywork",
+    "pages/myinformation/myinformation",
     "pages/historyM/historyM",
+    "pages/publishM/publishM",
+    "pages/people/people",
+    "pages/mydate/mydate",
     "pages/login/login",
     "pages/submitP/submitP",
     "pages/myself/myself",
-    "pages/publishM/publishM",
-    "pages/fcheckM/fcheckM",  
     "pages/publishedM/publishedM",
     "pages/inquiryM/inquiryM",
     "pages/seeM/seeM",
     "pages/submitM/submitM",
-    "pages/checkM/checkM", 
     "pages/apply/apply", 
     "pages/index/index",
     "pages/logs/logs"

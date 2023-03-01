@@ -8,7 +8,7 @@ Page({
    */
   onLoad(options) {
     wx.request({
-      url: 'http://1.15.118.125:8080/NIC/show?method=showNeed',
+      url: 'http://1.15.118.125:8081/NIC/show?method=showNeed',
       success: (res) => {
         list_all = res.data.data;
         let j = -1;
@@ -72,11 +72,11 @@ Page({
   takePhoto(e) {
     if (app.globalData.authority1 == 1) {
       wx.request({
-        url: 'http://1.15.118.125:8080/NIC/take',
+        url: 'http://1.15.118.125:8081/NIC/take',
         data: {
           "method": "take",
           "data": {
-            "userid": app.globalData.userid,
+            "userid": app.globalData.userid.toString(),
             "missionID": e.currentTarget.dataset.id.toString(),
             "kind": "photo"
           }
@@ -89,7 +89,7 @@ Page({
               icon:'error'
             })
           }
-          if (res.data.code == 402) {
+          if (res.data.code == 403) {
             wx.showToast({
               title: '接摄成功',
               //问题：一个人重复接一个任务。。。。。
@@ -121,11 +121,11 @@ Page({
   takeArticle(e) {
     if (app.globalData.authority1 == 1) {
       wx.request({
-        url: 'http://1.15.118.125:8080/NIC/take',
+        url: 'http://1.15.118.125:8081/NIC/take',
         data: {
           "method": "take",
           "data": {
-            "userid": app.globalData.userid,
+            "userid": app.globalData.userid.toString(),
             "missionID": e.currentTarget.dataset.id.toString(),
             "kind": "article"
           }
@@ -138,7 +138,7 @@ Page({
               icon:'error'
             })
           }
-          if (res.data.code == 402) {
+          if (res.data.code == 403) {
             wx.showToast({
               title: '接文成功',
               //问题：一个人重复接一个任务。。。。。

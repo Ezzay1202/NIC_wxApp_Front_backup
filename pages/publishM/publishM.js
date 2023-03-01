@@ -340,6 +340,7 @@ Component({
       }
     },
     onFirstChange(e) {
+      //选择任务状态
       this.setData({
         first: e.detail.current
       });
@@ -385,20 +386,20 @@ Component({
       const {
         key
       } = e?.currentTarget?.dataset;
-      console.log('picker pick:', place1);
+      //console.log('picker pick:', place1);
       this.setData({
         [`${key}Visible`]: true,
       });
     },
 
     onColumnChange(e) {
-      console.log('picker pick:', e);
+      //console.log('picker pick:', e);
     },
     onPickerChange(e) {
       const {
         key
       } = e?.currentTarget?.dataset;
-      console.log('picker change:', );
+      //console.log('picker change:', );
       this.setData({
         [`${key}Visible`]: false,
         [`${key}Value`]: e.detail.value,
@@ -480,7 +481,7 @@ Component({
         })
       } else {
         wx.request({
-          url: 'http://1.15.118.125:8080/NIC/manage',
+          url: 'http://1.15.118.125:8081/NIC/manage',
           data: {
             "method": "add",
             "data": {
@@ -556,7 +557,7 @@ Component({
               wx.uploadFile({
                 filePath: fileArray[i].path,
                 name: 'file',
-                url: 'http://1.15.118.125:8080/NIC/upload?missionID=' + missionID,
+                url: 'http://1.15.118.125:8081/NIC/upload?missionID=' + missionID,
                 header: {
                   "Content-Type": "multipart/form-data"
                 },

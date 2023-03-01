@@ -270,8 +270,7 @@ Component({
       {
         text:"学习二十大，管院在行动 | 本科第六党支部开展11月主题党日活动", date:"2022-11-30" , location:"管理学院105",people:[{key:1,name:"陶柯羽"},{key:2,name:"高原"},{key:5,name:"徐文慧"},{key:4,name:"张赫"},],url:"https://mp.weixin.qq.com/s/x-zHT_8DiS7T5NHC91Z3zA",score:4.5},
         {
-          text:"学习二十大，管院在行动 | 本科第六党支部开展11月主题党日活动", date:"2022-11-30" , location:"管理学院105",people:[{key:1,name:"陶柯羽"},{key:2,name:"高原"},{key:5,name:"徐文慧"},{key:4,name:"张赫"},],url:"https://mp.weixin.qq.com/s/x-zHT_8DiS7T5NHC91Z3zA",score:4.5},
-          
+          text:"学习二十大，管院在行动 | 本科第六党支部开展11月主题党日活动", date:"2022-11-30" , location:"管理学院105",people:[{key:1,name:"陶柯羽"},{key:2,name:"高原"},{key:5,name:"徐文慧"},{key:4,name:"张赫"},],url:"https://mp.weixin.qq.com/s/x-zHT_8DiS7T5NHC91Z3zA",score:4.5},    
     ],
   time:2*24*60*60*1000,
   timeData:{},
@@ -408,7 +407,7 @@ Component({
       console.log("yes", e)
       let index = e.currentTarget.dataset.index
       let url = this.data.functions[index].goto
-      if (url == '/pages/checkM/checkM' && app.globalData.authority2 == 10) {
+      if (url == '/pages/checkM/checkM' && app.globalData.authority2 == 10) {//!!!
         wx.showToast({
           title: '您没有权限',
           icon: 'error'

@@ -1,13 +1,25 @@
 // pages/fcheckM/fcheckM.js
 const app = getApp();
+const authority3 = app.globalData.authority3
 Page({
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    //console.log(authority3)
+    if (authority3 == 1) {
+      this.setData({
+        isManagement: true
+      })
+    } else {
+      this.setData({
+        isManagement: false
+      })
+    }
     const resultInfo = JSON.parse(options.resultInfo)
     console.log(resultInfo)
     this.setData({
+      missionID: resultInfo.missionID,
       mag: resultInfo.mag,
       tag: resultInfo.tag,
       attitude: resultInfo.attitude,
@@ -63,6 +75,10 @@ Page({
       name:"李钰",
       job:"审稿",
     },],
+    review: '',
+    remarks: '',
+    isManagement: false,
+    mag: {},
     tag: [],
     attitude: true,
     code: 1,
@@ -85,7 +101,6 @@ Page({
       label: `${index + 1}月`,
       value: index + 1,
     })),
-
     days: Array.from(new Array(31), (_, index) => ({
       label: `${index + 1}日`,
       value: index + 1
@@ -102,7 +117,6 @@ Page({
     })),
   },
   onClickPicker(e) {
-    
     this.setData({
       date1Visible: true,
     });
@@ -111,12 +125,12 @@ Page({
     console.log('picker pick:', e);
   },
   onPickerChange(e) {
-    
+
     console.log('picker change:', );
     this.setData({
-      date1Visible : false,
-      date1Value : e.detail.value,
-      date1CurrentValue : this.joinArray(e.detail.label),
+      date1Visible: false,
+      date1Value: e.detail.value,
+      date1CurrentValue: this.joinArray(e.detail.label),
     });
     if (e.detail.value.length == 4) {
       this.setData({
@@ -138,11 +152,11 @@ Page({
     console.log(e, '取消');
     console.log('picker1 cancel:');
     this.setData({
-      date1Visible : false,
+      date1Visible: false,
     });
   },
   // 星星点击事件
-  starTap: function (e) {
+  starTap(e) {
     var that = this;
     var index = e.currentTarget.dataset.index; // 获取当前点击的是第几颗星星
     var tempUserStars = this.data.userStars; // 暂存星星数组
@@ -161,9 +175,10 @@ Page({
     that.setData({
       userStars: tempUserStars
     })
+    console.log(this.data.wjxScore)
   },
   // 标签
-  labelx: function (e) {
+  labelx(e) {
     console.log(e)
     var i = e.currentTarget.dataset.index;
     var that = this.data.tag[i];
@@ -171,18 +186,41 @@ Page({
       show: !e.currentTarget.dataset.show
     })
   },
-  label: function (e) {
+  label(e) {
     console.log(e)
     var that = this;
     that.setData({
       attitude: !e.currentTarget.dataset.index
     })
   },
-  inputs: function (e) {
+  inputReview(e) {
     // 获取输入框的内容
     var value = e.detail.value;
     // 获取输入框内容的长度
     var len = parseInt(value.length);
+    //输入框内容赋值
+    this.setData({
+      review: value
+    })
+    //console.log(this.data.review)
+    //最多字数限制
+    if (len > this.data.max)
+      return;
+    // 当输入框内容的长度大于最大长度限制（max)时，终止setData()的执行
+    this.setData({
+      currentWordNumber: len //当前字数  
+    });
+  },
+  inputRemarks(e) {
+    // 获取输入框的内容
+    var value = e.detail.value;
+    // 获取输入框内容的长度
+    var len = parseInt(value.length);
+    //输入框内容赋值
+    this.setData({
+      remarks: value
+    })
+    //console.log(this.data.remarks)
     //最多字数限制
     if (len > this.data.max)
       return;
@@ -192,32 +230,83 @@ Page({
     });
   },
   handleBtn() {
-    wx: if (this.data.code == 1) {
+    if (this.data.review == '') {
       wx.showToast({
-        title: '评价成功',
-        icon: 'succes',
-        mask: true,
-        success: function () {
-          setTimeout(function () {
-            wx.reLaunch({
-              url: '../index/index'
-              //跳转到任务阶段页面
-            })
-          }, 1500)
-        }
-      });
-    } else if (this.data.code1 == 2) {
-      console.log("111")
-      wx.showToast({
-        title: '评价失败',
-        image: '/image/fail.png',
-        duration: 1500,
-        mask: true
+        title: '请输入评价！',
+        icon: 'error'
       })
+    } //else if (this.data.remarks == '') {
+    // wx.showToast({
+    //    title: '请输入备注！',
+    //     icon: 'error'
+    //   })
+    // }
+    else {
+      let count = 0
+      for (let i = 0; i < this.data.file_upload.length; i++) {
+        wx.uploadFile({
+          filePath: this.data.file_upload[i],
+          name: 'file',
+          url: 'http://1.15.118.125:8081/NIC/upload?missionID=' + this.data.missionID.toString() + '&userid=' + app.globalData.userid.toString() + '&kind=Layout',
+          header: {
+            "Content-Type": "multipart/form-data"
+          },
+          success: (res) => {
+            let json = JSON.parse(res.data)
+            console.log(json)
+            if (json.code != 502) {
+              wx.showToast({
+                title: 'error',
+                icon:'error'
+              })
+              bool = false
+              count += 1
+            }
+          }
+        })
+      }
+      if (count != 0) {
+        wx.request({
+          url: 'http://1.15.118.125:8081/NIC/manage',
+          data: {
+            "method": "examine",
+            "data": {
+              "userid": String(app.globalData.userid),
+              "missionID": String(this.data.missionID),
+              "review": this.data.review,
+              "tag": [],
+              "stars": String(this.data.wjxScore)
+            }
+          },
+          success: (res) => {
+            console.log(res)
+            if (count == this.data.file_upload.length) {
+              wx.showToast({
+                title: '提交成功',
+              })
+            } else {
+              wx.showToast({
+                title: '提交失败',
+                icon: 'error'
+              })
+            }
+            let now = new Date();
+            let entertime = now.getTime();
+            let endtime = now.getTime();
+            while (endtime - entertime < 2000) {
+              endtime = new Date().getTime()
+            }
+            wx.redirectTo({
+              url: '/pages/checkM/checkM.js',
+            })
+            list_show = [] //手动清空
+          }
+        })
+      }
     }
   },
   // 文件上传
-  uploadFile: function (e) {
+  uploadFile(e) {
     wx.chooseMessageFile({
       count: 10, //选择文件的数量
       type: 'all', //选择文件的类型

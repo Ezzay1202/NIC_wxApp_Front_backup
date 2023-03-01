@@ -97,12 +97,12 @@ Component({
     styleIsolation: 'apply-shared',
   },
   data: {
-    sideBarIndex: 1,
+    sideBarIndex: 0,
     scrollTop: 0,
     categories: [
         {
           label: '教学建设',
-          title: '教学建设',
+          title: '教学',
           items:[
             {label:"研讨会",checked:true},
             {label:"座谈会",checked:false},
@@ -116,13 +116,18 @@ Component({
           ]
         },
         {
-          label: '选项',
-          title: '标题',
-          badgeProps: {
-            dot: true,
-          },
+          label: '教学建设',
+          title: '教学建设',
           items:[
-            {label:"研讨会"}
+            {label:"研讨会",checked:true},
+            {label:"座谈会",checked:false},
+            {label:"座谈会"},
+            {label:"座谈会"},
+            {label:"座谈会"},
+            {label:"座谈会"},
+            {label:"座谈会"},
+            {label:"座谈会"},
+            {label:"管院国奖故事"},
           ]
         },
         {
@@ -252,14 +257,28 @@ Component({
       });
     },
     showCheck(e){
+      const query = wx.createSelectorQuery().in(this);
+      const { sideBarIndex } = this.data;
       this.setData({
         showcheck:!this.data.showcheck
       })
+      query
+      .selectAll('.title')
+      .boundingClientRect((rects) => {
+        this.offsetTopList = rects.map((item) => item.top);
+        this.setData({ 
+          scrollTop: rects[sideBarIndex].top 
+          });
+      })
+      .exec();
+      console.log(this.offsetTopList)
     },
     onSideBarChange(e) {
+      console.log(e)
       const { value } = e.detail;
-  
+      console.log(value)
       this.setData({ sideBarIndex: value, scrollTop: this.offsetTopList[value] });
+      console.log(this.offsetTopList)
     },
     onScroll(e) {
       const { scrollTop } = e.detail;
@@ -271,7 +290,7 @@ Component({
       }
   
       const index = this.offsetTopList.findIndex((top) => top > scrollTop && top - scrollTop <= threshold);
-  
+      console.log(top)
       if (index > -1) {
         this.setData({ sideBarIndex: index });
       }
